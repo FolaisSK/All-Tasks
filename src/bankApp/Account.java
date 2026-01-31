@@ -2,6 +2,7 @@ package bankApp;
 
 public class Account {
     private int balance;
+    private final int pinNumber = 1234;
 
     public int getBalance(){
         return balance;
@@ -17,4 +18,11 @@ public class Account {
         if(amount > 0 && amount <= balance)
             balance = balance - amount;
     }
+
+/*
+    public boolean inputPin(int userInput) {
+       if(userInput == pinNumber)
+           return true;
+        return false;
+    }**/
 }

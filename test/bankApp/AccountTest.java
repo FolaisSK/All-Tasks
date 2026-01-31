@@ -1,13 +1,12 @@
 package bankApp;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AccountTest {
 
-    public static Account account;
+    Account account;
 
     @BeforeEach
     public void initialState(){
@@ -35,7 +34,7 @@ public class AccountTest {
     }
 
     @Test
-    public void balanceIs5k_DepositMinus2k(){
+    public void balanceIs5k_DepositMinus2k_BalanceIsStill5k(){
         assertEquals(0, account.getBalance());
 
         account.deposit(5_000);
@@ -57,7 +56,7 @@ public class AccountTest {
     }
 
     @Test
-    public void deposit2k_Withdraw20k_BalanceIs2k(){
+    public void deposit2k_Withdraw20k_BalanceIsStill2k(){
         assertEquals(0, account.getBalance());
 
         account.deposit(2_000);
@@ -68,7 +67,7 @@ public class AccountTest {
     }
 
     @Test
-    public void deposit5k_WithdrawMinus2k_BalanceIs5k(){
+    public void deposit5k_WithdrawMinus2k_BalanceIsStill5k(){
         assertEquals(0, account.getBalance());
 
         account.deposit(5_000);
@@ -89,5 +88,16 @@ public class AccountTest {
         assertEquals(0, account.getBalance());
     }
 
+/*
+    @Test
+    public void balanceIsZeroDeposit10k_InputPinAndTransfer5k_BalanceIs5k(){
+        assertEquals(0, account.getBalance());
+        account.deposit(10_000);
+        assertEquals(10_000, account.getBalance());
+
+        account.withdraw(5_000, 1234);
+        assertEquals(10_000, account.getBalance());
+    }
+**/
 
 }
