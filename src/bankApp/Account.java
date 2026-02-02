@@ -1,11 +1,18 @@
 package bankApp;
 
 public class Account {
+    private int pin;
     private int balance;
-    private final int pinNumber = 1234;
 
-    public int getBalance(){
-        return balance;
+    public Account(int pin) {
+        this.pin = pin;
+    }
+
+    public int getBalance(int pinNumber){
+        if(pinNumber == pin)
+            return balance;
+        else
+            return 0;
     }
 
     public void deposit(int amount) {
@@ -14,15 +21,9 @@ public class Account {
 
     }
 
-    public void withdraw(int amount) {
-        if(amount > 0 && amount <= balance)
+    public void withdraw(int amount, int pinNumber) {
+        if(pinNumber == pin && amount > 0 && amount <= balance)
             balance = balance - amount;
     }
 
-/*
-    public boolean inputPin(int userInput) {
-       if(userInput == pinNumber)
-           return true;
-        return false;
-    }**/
 }

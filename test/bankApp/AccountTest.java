@@ -10,9 +10,10 @@ public class AccountTest {
 
     @BeforeEach
     public void initialState(){
-        account = new Account();
+        account = new Account(1234);
     }
 
+    /*
     @Test
     public void deposit5k_BalanceIs5k(){
         assertEquals(0, account.getBalance());
@@ -88,7 +89,7 @@ public class AccountTest {
         assertEquals(0, account.getBalance());
     }
 
-/*
+
     @Test
     public void balanceIsZeroDeposit10k_InputPinAndTransfer5k_BalanceIs5k(){
         assertEquals(0, account.getBalance());
@@ -99,5 +100,37 @@ public class AccountTest {
         assertEquals(10_000, account.getBalance());
     }
 **/
+
+    @Test
+    public void deposit10k_InputPin_BalanceIs10k(){
+        account.deposit(10_000);
+        assertEquals(10_000, account.getBalance(1234));
+
+    }
+
+    @Test
+    public void deposit10k_InputWrongPin_BalanceIsZero(){
+        assertEquals(0, account.getBalance(1234));
+        account.deposit(10_000);
+        assertEquals(0, account.getBalance(1111));
+    }
+
+    @Test
+    public void deposit10k_InputPin_Withdraw5k_BalanceIs5k(){
+        account.deposit(10_000);
+        assertEquals(10_000, account.getBalance(1234));
+
+        account.withdraw(5_000, 1234);
+        assertEquals(5_000, account.getBalance(1234));
+    }
+
+    @Test
+    public void deposit10k_InputWrongPin_Withdraw5k_BalanceIsStill10k(){
+        account.deposit(10_000);
+        assertEquals(10_000, account.getBalance(1234));
+
+        account.withdraw(5_000, 1111);
+        assertEquals(10_000, account.getBalance(1234));
+    }
 
 }
