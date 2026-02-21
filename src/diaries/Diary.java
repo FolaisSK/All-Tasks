@@ -10,6 +10,7 @@ public class Diary {
     private List<Entry> entries;
 
     public Diary(String username, String password){
+        validatePasswordLength(password);
         this.username = username;
         this.password = password;
         this.isLocked = true;
@@ -20,24 +21,26 @@ public class Diary {
     }
 
     public void unlockDiary(String password) {
+        checkIsUnlocked();
         validatePassword(password);
         isLocked = false;
     }
 
     public void lockDiary() {
+        checkStatus();
         isLocked = true;
     }
 
-    private void validatePassword(String password){
-        if (!password.equals(this.password)) throw new IllegalArgumentException("Invalid Password");
-    }
-
     public void createEntry(String title, String body) {
+        checkStatus();
         Entry entry = new Entry(title, body);
         entries.add(entry);
+        System.out.println("Entry ID: " + entry.getId());
     }
 
     public Entry findEntryById(int id) {
+        checkStatus();
+        validateEntryId(id);
         for(Entry entry : entries){
             if (entry.getId() == id) return entry;
         }
@@ -45,10 +48,14 @@ public class Diary {
     }
 
     public void deleteEntry(int id){
+        checkStatus();
+        validateEntryId(id);
         entries.remove(findEntryById(id));
     }
 
     public void updateEntry(int id, String newTitle, String newBody) {
+        checkStatus();
+        validateEntryId(id);
         Entry story = findEntryById(id);
         story.setTitle(newTitle);
         story.setBody(newBody);
@@ -61,5 +68,25 @@ public class Diary {
     public boolean peepPassword(String password) {
         if(password.equals(this.password)) return true;
         return false;
+    }
+
+    private void validatePassword(String password){
+        if (!password.equals(this.password)) throw new IllegalArgumentException("Invalid Password");
+    }
+
+    private void validatePasswordLength(String password){
+        if(password.length() < 4) throw new IllegalArgumentException("Password must be minimum 4 charaters");
+    }
+
+    private void validateEntryId(int id){
+        if(id < 1) throw new IllegalArgumentException("Entry ID cannot be negative number!!");
+    }
+
+    private void checkStatus(){
+        if(isLocked()) throw new IllegalArgumentException("Diary is Locked!!");
+    }
+
+    private void checkIsUnlocked(){
+        if(!isLocked()) throw new IllegalArgumentException("Diary is open!!");
     }
 }
