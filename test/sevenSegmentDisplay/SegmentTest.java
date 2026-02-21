@@ -97,8 +97,8 @@ public class SegmentTest {
     }
 
     @Test
-    public void functionlityTestWhenPoweredOn(){
-        segment.setNumber("11111111");
+    public void functionalityTestWhenPoweredOn(){
+        segment.setNumber("10001111");
         segment.turnLCDOn(led,segment.getTurnedOnSegments());
     }
 
