@@ -1,14 +1,18 @@
 package diaries;
 
+import java.time.LocalDate;
+
 public class Entry {
     private int id;
     private String title;
     private String body;
+    private LocalDate dateCreated;
 
-    public Entry(String title, String body) {
+    public Entry(int id, String title, String body) {
         this.title = title;
         this.body = body;
-        this.id += 1;
+        this.id += id;
+        this.dateCreated = LocalDate.now();
     }
 
     public String getTitle() {
@@ -29,5 +33,9 @@ public class Entry {
 
     public int getId() {
         return id;
+    }
+
+    public LocalDate getDateCreated() {
+        return dateCreated;
     }
 }

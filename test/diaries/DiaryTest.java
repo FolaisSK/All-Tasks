@@ -47,6 +47,7 @@ public class DiaryTest {
         diary.createEntry("The Flash", "A story about a man who was struck by lightning, and became the fastest man alive");
         Entry entry = diary.findEntryById(1);
         assertEquals("The Flash", entry.getTitle());
+        System.out.println(entry.getDateCreated());
     }
 
     @Test

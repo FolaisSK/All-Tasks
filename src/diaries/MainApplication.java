@@ -88,6 +88,8 @@ public class MainApplication {
     private static void deleteEntry(Diary diary) {
         try{
         int id = Integer.parseInt(input("Enter Entry ID: "));
+        Entry entry = diary.findEntryById(id);
+        print("Date Created: " + entry.getDateCreated());
         diary.deleteEntry(id);
         print("Entry Deleted Successfully!!!");
         }catch (Exception ex){
@@ -103,6 +105,8 @@ public class MainApplication {
         String newBody = input("Enter New Body");
         try{
             diary.updateEntry(id, newTitle, newBody);
+            Entry entry = diary.findEntryById(id);
+            print("Date Created: " + entry.getDateCreated());
             print("Entry Updated Successfully!!!");
         }catch (Exception ex){
             print(ex.getMessage());

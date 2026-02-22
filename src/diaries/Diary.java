@@ -8,6 +8,7 @@ public class Diary {
     private String password;
     private boolean isLocked;
     private List<Entry> entries;
+    private int entryId;
 
     public Diary(String username, String password){
         validatePasswordLength(password);
@@ -33,7 +34,7 @@ public class Diary {
 
     public void createEntry(String title, String body) {
         checkStatus();
-        Entry entry = new Entry(title, body);
+        Entry entry = new Entry(++entryId,title, body);
         entries.add(entry);
         System.out.println("Entry ID: " + entry.getId());
     }
