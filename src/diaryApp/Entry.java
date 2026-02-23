@@ -1,4 +1,4 @@
-package diaries;
+package diaryApp;
 
 import java.time.LocalDate;
 

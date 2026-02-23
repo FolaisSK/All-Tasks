@@ -1,4 +1,4 @@
-package diaries;
+package diaryApp;
 
 import java.util.ArrayList;
 import java.util.List;
