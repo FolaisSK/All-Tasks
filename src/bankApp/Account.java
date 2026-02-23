@@ -8,6 +8,7 @@ public class Account {
     private String number;
 
     public Account(String name,String pin, String phoneNumber) {
+        validateName(name);
         this.name = name;
         this.pin = pin;
         this.phoneNumber = phoneNumber;
@@ -21,19 +22,15 @@ public class Account {
     }
 
     public void deposit(int amount) {
-        if(amount > 0)
-            balance = balance + amount;
+        validatePositiveAmount(amount);
+        balance = balance + amount;
     }
 
     public void withdraw(int amount, String pinNumber) {
-        if(pinNumber.equals(pin) && amount > 0 && amount <= balance)
-            balance = balance - amount;
-    }
-
-    public void transfer(int amount, String pinNumber, Account receiving_account) {
-        validateTransaction(amount, pinNumber);
-        withdraw(amount, pinNumber);
-        receiving_account.deposit(amount);
+        validatePin(pinNumber);
+        validateAmount(amount);
+        validatePositiveAmount(amount);
+        balance = balance - amount;
     }
 
     private String generateAccountNumber(){
@@ -51,10 +48,6 @@ public class Account {
 
     private void validatePhoneNumber(){
         if(phoneNumber.length() != 11) throw new IllegalArgumentException("Invalid Phone Number");
-    }
-
-    private void validateTransaction(int amount, String pinNumber){
-        if(!pinNumber.equals(pin) || amount < 0 || amount > balance) throw new IllegalArgumentException();
     }
 
     private void validatePin(String pinNumber){

@@ -136,25 +136,5 @@ public class AccountTest {
         assertEquals(10_000, account.getBalance("1234"));
     }
 
-    @Test
-    public void deposit10kInX_InputPin_Transfer5kToY_BalanceIs5kInX_BalanceIs5kInY(){
-        assertEquals(0, account.getBalance("1234"));
-        account.deposit(10_000);
-        assertEquals(10_000, account.getBalance("1234"));
-
-        account.transfer(5_000, "1234", accountTwo);
-        assertEquals(5_000, account.getBalance("1234"));
-        assertEquals(5_000, accountTwo.getBalance("1111"));
-    }
-
-    @Test
-    public void deposit10kInX_InputWrongPin_Transfer5kToY_ThrowsException(){
-        assertEquals(0, account.getBalance("1234"));
-        account.deposit(10_000);
-        assertEquals(10_000, account.getBalance("1234"));
-
-        assertThrows(IllegalArgumentException.class, () ->account.transfer(5_000, "9999", accountTwo));
-        assertEquals(10_000, account.getBalance("1234"));
-    }
 
 }
