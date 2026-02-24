@@ -6,7 +6,7 @@ public class AtmMachine {
     private static Bank bank;
 
     static void main() {
-        bank = new Bank("Christian Fake bank");
+        bank = new Bank("SK World bank");
         displayMainMenu();
     }
 

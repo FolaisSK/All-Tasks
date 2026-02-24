@@ -62,8 +62,7 @@ public class Account {
         if(amount <= 0) throw new IllegalArgumentException("Invalid Amount");
     }
 
-    private String validateName(String name){
+    private void validateName(String name){
         if(name.trim().isEmpty()) throw new IllegalArgumentException("What kind of name is that");
-        return name;
     }
 }
