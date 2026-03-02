@@ -1,4 +1,4 @@
-package turtleGraphics;
+package turtleGraphicsInitialTrial;
 
 import java.util.Scanner;
 

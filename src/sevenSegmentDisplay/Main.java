@@ -6,7 +6,7 @@ public class Main {
         SevenSegmentDisplay segment = new SevenSegmentDisplay();
         LEDScreen led = new LEDScreen();
 
-        segment.setNumber("10001111");
+        segment.setNumber("11011011");
         segment.turnLCDOn(led,segment.getTurnedOnSegments());
     }
 }

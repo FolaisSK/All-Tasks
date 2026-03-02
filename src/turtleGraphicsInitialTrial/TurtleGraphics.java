@@ -1,4 +1,4 @@
-package turtleGraphics;
+package turtleGraphicsInitialTrial;
 
 public class TurtleGraphics {
     private boolean penDown;
